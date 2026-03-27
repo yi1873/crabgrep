@@ -1,0 +1,25 @@
+[package]
+name = "crabgrep"
+version = "0.1.0"
+edition = "2021"
+description = "一个用 Rust 写的文件搜索工具"
+license = "MIT"
+repository = "https://github.com/yi1873/crabgrep"
+keywords = ["cli", "grep", "search"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+colored = "2"
+anyhow = "1"
+walkdir = "2"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+opt-level = 3        # 最高优化级别
+lto = true           # 链接时优化（减小体积）
+codegen-units = 1    # 更好的优化（慢一点）
+strip = true         # 去除调试符号（更小的二进制）
+panic = "abort"      # panic 时直接退出（更小的二进制）
